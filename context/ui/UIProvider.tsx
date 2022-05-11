@@ -13,7 +13,7 @@ const UI_INITIAL_STATE: UIState = {
   sidemenuOpen: false,
 };
 
-export const UIProvicer: FC<Props> = ({ children }) => {
+export const UIProvider: FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(uiReducer, UI_INITIAL_STATE);
 
   const openSideMenu = () => {
