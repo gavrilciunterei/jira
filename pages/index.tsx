@@ -1,13 +1,33 @@
-import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
+import { Card, CardContent, CardHeader, Grid } from '@mui/material';
 import { Layouts } from '../components/layouts/';
 
 const Home: NextPage = () => {
   return (
-    <Layouts>
-      <Typography variant="h1" color="primary">
-        Holas!
-      </Typography>
+    <Layouts title="Home - Jira">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: 'calc(100vh - 100px)' }}>
+            <CardHeader title="Pendientes" />
+            <CardContent>
+              {/* Agregar nueva tarea */}
+              {/* Listado entradas */}
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: 'calc(100vh - 100px)' }}>
+            <CardHeader title="En Progreso" />
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: 'calc(100vh - 100px)' }}>
+            <CardHeader title="Completadas" />
+          </Card>
+        </Grid>
+      </Grid>
     </Layouts>
   );
 };
