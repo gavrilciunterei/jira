@@ -13,12 +13,32 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   switch (req.method) {
+    case 'GET':
+      return getEntry(req, res);
     case 'PUT':
       return updateEntries(req, res);
     default:
       return res.status(400).json({ message: 'Endpoint no existe' });
   }
 }
+
+const getEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  try {
+    const { id } = req.query;
+    await db.connect();
+    const entry = await Entry.findById(id);
+    await db.disconnect();
+
+    if (!entry) {
+      return res.status(404).json({ message: 'Entrada no encontrada' });
+    }
+
+    return res.status(200).json(entry);
+  } catch (error) {
+    return res.status(404).json({ message: 'Entrada no encontrada' });
+    await db.disconnect();
+  }
+};
 
 const updateEntries = async (
   req: NextApiRequest,
